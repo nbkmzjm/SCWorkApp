@@ -536,6 +536,41 @@ umzug.up().then(function (migrations) {
 		
 		http.listen(PORT, function() {
 			console.log('Helllo Express server started on PORT ' + PORT);
+			setInterval(function(){
+		        console.log('clean DB has began')
+		        var prior90Date = moment(new Date()).subtract(90,'days').format()
+		        
+		          console.log('prior90Date:'+prior90Date)
+		        db.assignTracer.destroy({
+		          where:{
+		            updatedAt:{
+		              $lt:prior90Date
+		            }
+		          }
+		        }).then(function(){
+
+
+			        return [db.assign.destroy({
+						where:{
+							updatedAt:{
+							  $lt:prior90Date
+							}
+						}
+			        })]
+		        }).then(function(){
+					var prior10Date = moment(new Date()).subtract(10,'days').format()
+					return [db.token.destroy({
+						where:{
+							createdAt:{
+								$lt:prior10Date
+							}
+						}
+					})]
+
+		        }).catch(function(e) {
+		          console.log(e);
+		        });
+      		}, 30000);
 		});
 
 	});
