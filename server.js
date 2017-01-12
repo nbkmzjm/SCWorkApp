@@ -543,7 +543,7 @@ umzug.up().then(function (migrations) {
 		          console.log('prior90Date:'+prior90Date)
 		        db.assignTracer.destroy({
 		          where:{
-		            updatedAt:{
+		            createdAt:{
 		              $lt:prior90Date
 		            }
 		          }
@@ -552,7 +552,7 @@ umzug.up().then(function (migrations) {
 
 			        return [db.assign.destroy({
 						where:{
-							updatedAt:{
+							createdAt:{
 							  $lt:prior90Date
 							}
 						}
@@ -570,7 +570,7 @@ umzug.up().then(function (migrations) {
 		        }).catch(function(e) {
 		          console.log(e);
 		        });
-      		}, 86400000);
+      		}, 30000);
 		});
 
 	});
