@@ -570,7 +570,7 @@ umzug.up().then(function (migrations) {
 		        }).catch(function(e) {
 		          console.log(e);
 		        });
-      		}, 30000);
+      		}, 86400000);
 		});
 
 	});
