@@ -71,6 +71,10 @@
 
 }
 
+#tblOverview tr:nth-child(odd){
+	background-color: #D7E9F7
+}
+
 #user tr:nth-child(odd), 
 #main tr:nth-child(odd), 
 #eventAction tr:nth-child(odd){
@@ -133,7 +137,7 @@
 	
 }
 
-#main td:nth-child(7), #main td:nth-child(8){
+#main td:nth-child(7), #main td:nth-child(8), #tblOverview td:nth-child(7), #tblOverview td:nth-child(6){
 	background-color: #66C27A;
 	font-weight: bold;
 }
