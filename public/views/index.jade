@@ -310,7 +310,10 @@ append scripts
 						//- });
 						
 						});
-						$("#delGly").length < 1?this.appendChild(span):""
+						if($("#delGly").length > 0){
+						$("#delGly").remove()
+						}
+						this.appendChild(span)
 						//- this.remove()
 					})
 					divSCOverview.addEventListener('mouseleave', function(){
