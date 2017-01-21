@@ -139,7 +139,7 @@
 
 #main td:nth-child(7), #main td:nth-child(8), #tblOverview td:nth-child(7), #tblOverview td:nth-child(6){
 	background-color: #66C27A;
-	font-weight: bold;
+	/*font-weight: bold;*/
 }
 
 #user td:nth-child(1), #main td:nth-child(1){
