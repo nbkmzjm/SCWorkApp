@@ -237,7 +237,7 @@ append scripts
 												
 												td.innerHTML = scOverviewDate.add(i, 'days').format('MMM DD')+ '<br> -'
 												td.scOverviewDate = scOverviewDate.format('MM-DD-YYYY')
-												td.addEventListener('dblclick', function(){
+												td.addEventListener('click', function(){
 													$('#calendar').val(this.scOverviewDate)
 													$.post('/ajaxUser').done(mainSC);
 												})
@@ -263,7 +263,7 @@ append scripts
 												
 												td.innerHTML = scOverviewDate.add(i, 'days').format('MMM DD')+ '<br> -'
 												td.scOverviewDate = scOverviewDate.format('MM-DD-YYYY')
-												td.addEventListener('dblclick', function(){
+												td.addEventListener('click', function(){
 													$('#calendar').val(this.scOverviewDate)
 													$.post('/ajaxUser').done(mainSC);
 												})
@@ -291,8 +291,27 @@ append scripts
 								
 							tblOverview.appendChild(tbody)
 						divSCOverview.appendChild(tblOverview)
-					divSCOverview.addEventListener('dblclick', function(){
-						this.remove()
+
+					divSCOverview.addEventListener('click', function(){
+						var self = this
+						var span = document.createElement('span')
+						span.innerHTML = '';
+						span.style.fontSize = "20px"
+						span.style.color = 'red'
+						span.style.top = '-420px'
+						//- span.style.right = '0px'
+						span.className = "glyphicon glyphicon-remove-circle"
+						span.id = 'delGly';
+						//- click the 'x' to remove from list
+						span.addEventListener('click', function(){
+							self.remove()
+						//- $.post('/delTaskOption',{taskOption:taskOptionDes}).done(function(pData){
+						//- 	ul.removeChild(li)
+						//- });
+						
+						});
+						$("#delGly").length < 1?this.appendChild(span):""
+						//- this.remove()
 					})
 					divSCOverview.addEventListener('mouseleave', function(){
 						this.style.zIndex = '0'
