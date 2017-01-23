@@ -237,6 +237,7 @@ append scripts
 												
 												//- td.innerHTML = scOverviewDate.add(i, 'days').format('MMM DD')+ '<br> -'
 													var a = document.createElement('a')
+
 													a.style.color = '#0000BE'
 													a.innerHTML = scOverviewDate.add(i, 'days').format('MMM DD')+ '<br> &nbsp'
 													
@@ -246,7 +247,10 @@ append scripts
 														$.post('/ajaxUser').done(mainSC);
 													})
 													assign.forEach(function(assign, i){
+														console.log(assign.Note)
+														
 														if(moment(assign.datePos, 'MM-DD-YYYY').isSame(scOverviewDate)){
+															noteColor(assign.Note, a)
 															a.innerHTML = scOverviewDate.format('MMM DD')+ '<br> <b>'+ assign.Note  + '</b>'
 														}
 													})
@@ -278,6 +282,7 @@ append scripts
 													})
 													assign.forEach(function(assign, i){
 														if(moment(assign.datePos, 'MM-DD-YYYY').isSame(scOverviewDate)){
+															noteColor(assign.Note, a)
 															a.innerHTML = scOverviewDate.format('MMM DD')+ '<br> <b>'+ assign.Note  + '</b>'
 															
 														}

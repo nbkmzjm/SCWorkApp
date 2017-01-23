@@ -197,3 +197,15 @@ function calendarPick(){
 
 			
 		}
+
+function noteColor(assignNote, element){
+	if (assignNote.indexOf('PTO-A')!==-1){
+		element.style.color = 'green'
+	}else if(assignNote.indexOf('PTO-R')!==-1){
+		element.style.color = '#ED9907'
+	}else if(assignNote.indexOf('OFF')!==-1){
+		element.style.color = '#9FAAA3'
+	}else{
+		element.style.color = 'blue'
+	}
+}
