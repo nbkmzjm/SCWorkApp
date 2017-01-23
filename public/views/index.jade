@@ -173,7 +173,7 @@ append scripts
 					}, 50)
 					
 					
-					divSCOverview.style.top = event.clientY-90+'px'
+					divSCOverview.style.top = event.clientY-185+'px'
 
 						var tblOverview = document.createElement('table')
 						tblOverview.id = 'tblOverview'
@@ -184,7 +184,7 @@ append scripts
 
 									var th = document.createElement('th')
 									th.innerHTML = days[i]
-									i===0?th.innerHTML = userName +'<br>'+days[i]:""
+									i===0?th.innerHTML = days[i]+'<br>'+userName :""
 									tr.appendChild(th)
 								}
 								thead.appendChild(tr)
@@ -235,18 +235,23 @@ append scripts
 												var scOverviewDate = moment(weekStart, 'MM-DD-YYYY');
 												var td = document.createElement('td')
 												
-												td.innerHTML = scOverviewDate.add(i, 'days').format('MMM DD')+ '<br> -'
-												td.scOverviewDate = scOverviewDate.format('MM-DD-YYYY')
-												td.addEventListener('click', function(){
-													$('#calendar').val(this.scOverviewDate)
-													$.post('/ajaxUser').done(mainSC);
-												})
-												assign.forEach(function(assign, i){
-													if(moment(assign.datePos, 'MM-DD-YYYY').isSame(scOverviewDate)){
-														td.innerHTML = scOverviewDate.format('MMM DD')+ '<br> <b>'+ assign.Note  + '</b>'
-													}
-												})
-												
+												//- td.innerHTML = scOverviewDate.add(i, 'days').format('MMM DD')+ '<br> -'
+													var a = document.createElement('a')
+													a.style.color = '#0000BE'
+													a.innerHTML = scOverviewDate.add(i, 'days').format('MMM DD')+ '<br> &nbsp'
+													
+													a.scOverviewDate = scOverviewDate.format('MM-DD-YYYY')
+													a.addEventListener('click', function(){
+														$('#calendar').val(this.scOverviewDate)
+														$.post('/ajaxUser').done(mainSC);
+													})
+													assign.forEach(function(assign, i){
+														if(moment(assign.datePos, 'MM-DD-YYYY').isSame(scOverviewDate)){
+															a.innerHTML = scOverviewDate.format('MMM DD')+ '<br> <b>'+ assign.Note  + '</b>'
+														}
+													})
+													a.setAttribute('href','#');
+													td.appendChild(a)
 												var tr = document.createElement('tr')
 												tr.style.backgroundColor = '#7ECCD5'
 												scOverviewCurWeekStart.isSame(scOverviewDate)?
@@ -257,22 +262,28 @@ append scripts
 												
 												tbody.appendChild(tr)
 
+
 											}else{
 												var scOverviewDate = moment(weekStart, 'MM-DD-YYYY').isoWeekday(1);
 												var td = document.createElement('td')
+													var a = document.createElement('a')
+													a.style.color = '#0000BE'
+													a.innerHTML = scOverviewDate.add(i, 'days').format('MMM DD')+ '<br> &nbsp'
+													
 												
-												td.innerHTML = scOverviewDate.add(i, 'days').format('MMM DD')+ '<br> -'
-												td.scOverviewDate = scOverviewDate.format('MM-DD-YYYY')
-												td.addEventListener('click', function(){
-													$('#calendar').val(this.scOverviewDate)
-													$.post('/ajaxUser').done(mainSC);
-												})
-												assign.forEach(function(assign, i){
-													if(moment(assign.datePos, 'MM-DD-YYYY').isSame(scOverviewDate)){
-														td.innerHTML = scOverviewDate.format('MMM DD')+ '<br> <b>'+ assign.Note  + '</b>'
-														
-													}
-												})
+													a.scOverviewDate = scOverviewDate.format('MM-DD-YYYY')
+													a.addEventListener('click', function(){
+														$('#calendar').val(this.scOverviewDate)
+														$.post('/ajaxUser').done(mainSC);
+													})
+													assign.forEach(function(assign, i){
+														if(moment(assign.datePos, 'MM-DD-YYYY').isSame(scOverviewDate)){
+															a.innerHTML = scOverviewDate.format('MMM DD')+ '<br> <b>'+ assign.Note  + '</b>'
+															
+														}
+													})
+													a.setAttribute('href','#');
+													td.appendChild(a)
 												
 												tr.appendChild(td)
 											}
@@ -292,30 +303,27 @@ append scripts
 							tblOverview.appendChild(tbody)
 						divSCOverview.appendChild(tblOverview)
 
-					divSCOverview.addEventListener('click', function(){
-						var self = this
-						var span = document.createElement('span')
-						span.innerHTML = '';
-						span.style.fontSize = "20px"
-						span.style.color = 'red'
-						span.style.top = '-420px'
-						//- span.style.right = '0px'
-						span.className = "glyphicon glyphicon-remove-circle"
-						span.id = 'delGly';
-						//- click the 'x' to remove from list
-						span.addEventListener('click', function(){
-							self.remove()
-						//- $.post('/delTaskOption',{taskOption:taskOptionDes}).done(function(pData){
-						//- 	ul.removeChild(li)
-						//- });
-						
-						});
-						if($("#delGly").length > 0){
-						$("#delGly").remove()
-						}
-						this.appendChild(span)
-						//- this.remove()
-					})
+
+					//- divSCOverview.addEventListener('click', function(){
+					//- 	var self = this
+					var span = document.createElement('span')
+					span.innerHTML = '';
+					span.zIndex = 1;
+					span.style.position = 'absolute'
+					span.style.fontSize = "25px"
+					span.style.color = 'red'
+					span.className = "glyphicon glyphicon-remove"
+					span.id = 'delGly';
+					//- click the 'x' to remove from list
+					span.addEventListener('click', function(){
+						divSCOverview.remove()
+					
+					});
+					//- if($("#delGly").length > 0){
+					//- $("#delGly").remove()
+					//- }
+					divSCOverview.appendChild(span)
+					//- })
 					divSCOverview.addEventListener('mouseleave', function(){
 						this.style.zIndex = '0'
 					})
@@ -327,7 +335,7 @@ append scripts
 						document.onmousemove = function(event){
 							console.log(event.pageX)
 							self.style.left = event.pageX-50+'px'
-							self.style.top = event.pageY-130+'px'
+							self.style.top = event.pageY-220+'px'
 						}
 
 						this.onmouseup = function() {
