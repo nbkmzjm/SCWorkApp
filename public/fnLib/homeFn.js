@@ -198,13 +198,28 @@ function calendarPick(){
 			
 		}
 
+// function noteColor(assignNote, element){
+// 	if (assignNote.indexOf('PTO-A')!==-1){
+// 		element.style.color = 'green'
+// 	}else if(assignNote.indexOf('PTO-R')!==-1){
+// 		element.style.color = '#ED9907'
+// 	}else if(assignNote.indexOf('OFF')!==-1){
+// 		element.style.color = '#9FAAA3'
+// 	}else{
+// 		element.style.color = 'blue'
+// 	}
+// }
+
+
 function noteColor(assignNote, element){
-	if (assignNote.indexOf('PTO-A')!==-1){
-		element.style.color = 'green'
-	}else if(assignNote.indexOf('PTO-R')!==-1){
-		element.style.color = '#ED9907'
-	}else if(assignNote.indexOf('OFF')!==-1){
+	if (assignNote=='PTO-A'){
+		element.style.color = '#019B01'
+	}else if(assignNote=='PTO-R'){
+		element.style.color = '#FFBD4B'
+	}else if(assignNote=='OFF'){
 		element.style.color = '#9FAAA3'
+	}else if(assignNote=='FMLA'){
+		element.style.color = '#A810AE'
 	}else{
 		element.style.color = 'blue'
 	}
