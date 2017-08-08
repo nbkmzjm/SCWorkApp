@@ -583,9 +583,10 @@ umzug.up().then(function (migrations) {
 		
 		http.listen(PORT, function() {
 			console.log('Helllo Express server started on PORT ' + PORT);
+			console.log('clean DB has began prep')
 			setInterval(function(){
 		        console.log('clean DB has began')
-		        var prior90Date = moment(new Date()).subtract(90,'days').format()
+		        var prior90Date = moment(new Date()).subtract(60,'days').format()
 		        
 		          console.log('prior90Date:'+prior90Date)
 		        db.assignTracer.destroy({
@@ -617,7 +618,7 @@ umzug.up().then(function (migrations) {
 		        }).catch(function(e) {
 		          console.log(e);
 		        });
-      		}, 86400000);
+      		}, 10000);
 		});
 
 	});
